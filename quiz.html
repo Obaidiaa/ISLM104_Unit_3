@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار - حقوق الإنسان في الإسلام</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="bg-dark text-white text-center py-4">
+        <h1 class="display-5">اختبار: حقوق الإنسان في الإسلام</h1>
+        <nav class="nav justify-content-center">
+            <a class="nav-link text-white" href="index.html">الرئيسية</a>
+            <a class="nav-link text-white" href="content_1.html">مبادئ حقوق الإنسان من منظور إسلامي</a>
+            <a class="nav-link text-white" href="content_2.html"> الحقوق العامة للإنسان في الإسلام</a>
+            <a class="nav-link text-white" href="content_3.html"> حقوق الإنسان في المملكة العربية السعودية</a>
+            <a class="nav-link text-white text-decoration-underline" href="#">الاختبار</a>
+        </nav>
+    </header>
+
+    <main class="container mt-5">
+        <section class="quiz-section bg-light p-5 rounded">
+            <h2 class="display-6">اختبر معلوماتك</h2>
+            <form id="quizForm"></form>
+            <p id="result" class="mt-3"></p>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 حقوق الإنسان في الإسلام</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const quizData = [
+            {
+                question: "ما هو الأساس الأول لحقوق الإنسان في الإسلام؟",
+                options: ["الكرامة الإنسانية", "حرية التعبير", "المساواة بين الأديان", "إقامة العدل"],
+                answer: "الكرامة الإنسانية"
+            },
+            {
+                question: "كيف كرم الله الإنسان وفقًا للقرآن الكريم؟",
+                options: ["بإعطاءه القوة", "بجعل خليفة في الأرض", "بتفضيله على باقي المخلوقات", "بتعليمه الأسماء كلها"],
+                answer: "بجعل خليفة في الأرض"
+            },
+            {
+                question: "ما هو حكم الإسلام في التعامل مع الإنسان حتى بعد موته؟",
+                options: ["يجب دفنه بدون طقوس", "يمنع التمثيل بجثته", "يجب معاملته كأنه حي", "يجب إخفاء جسده"],
+                answer: "يمنع التمثيل بجثته"
+            },
+            {
+                question: "ما هي قيمة الحرية في الإسلام؟",
+                options: ["ليست ضرورية", "مرتبطة بطبيعة الإنسان وفطرته", "تمنع الحديث بحرية", "تمنح للعلماء فقط"],
+                answer: "مرتبطة بطبيعة الإنسان وفطرته"
+            },
+            {
+                question: "ما هو الحق الذي يتعلق بالتعبير عن الرأي في الإسلام؟",
+                options: ["مسموح بأي رأي", "مقيد بعدم الإضرار بالآخرين", "ممنوع تمامًا", "مسموح للعلماء فقط"],
+                answer: "مقيد بعدم الإضرار بالآخرين"
+            },
+            {
+                question: "ما هو أساس المساواة في الإسلام؟",
+                options: ["بين الأديان فقط", "بين الرجال فقط", "بين جميع البشر", "بين الأغنياء والفقراء"],
+                answer: "بين جميع البشر"
+            },
+            {
+                question: "ما هي الاستثناءات التي يمكن أن تفرض تفريقًا في بعض الحقوق بين الرجل والمرأة؟",
+                options: ["حسب المستوى الاجتماعي", "حسب الدور الوظيفي والمسؤوليات", "حسب المذهب الديني", "حسب المكانة الاقتصادية"],
+                answer: "حسب الدور الوظيفي والمسؤوليات"
+            },
+            {
+                question: "ما هي العدالة التي يأمر بها الله في الإسلام؟",
+                options: ["العدالة بين المسلمين فقط", "العدالة بين جميع البشر", "العدالة في المعاملات المالية فقط", "العدالة في الأمور الشخصية فقط"],
+                answer: "العدالة بين جميع البشر"
+            },
+            {
+                question: "ما هو الحق الأول من الحقوق العامة في الإسلام؟",
+                options: ["الحق في التعليم", "الحق في التملك", "الحق في الحياة", "الحق في العمل"],
+                answer: "الحق في الحياة"
+            },
+            {
+                question: "ما هو حكم الإسلام تجاه الانتحار؟",
+                options: ["مسموح في الحالات الصعبة", "محرم تمامًا", "مسموح به لمن يعاني من الألم", "لا يوجد حكم واضح"],
+                answer: "محرم تمامًا"
+            },
+            {
+                question: "ماذا يعتبر الإسلام في حالة استخدام الأدوات التي قد تكون قاتلة؟",
+                options: ["مقبولة في الحالات المزاحية", "ممنوعة حتى لو كان مزاحًا", "مسموح بها في القتال فقط", "ممنوعة في القوانين المدنية فقط"],
+                answer: "ممنوعة حتى لو كان مزاحًا"
+            },
+            {
+                question: "ما هو الحق الأول في الإسلام؟",
+                options: ["الحق في الحياة", "الحق في التملك", "الحق في التعليم", "الحق في حرية التعبير"],
+                answer: "الحق في الحياة"
+            },
+            {
+                question: "كيف يتم الحصول على الملكية في الإسلام؟",
+                options: ["عن طريق العمل فقط", "عن طريق الميراث فقط", "عن طريق العقود مثل البيع", "عن طريق الهيمنة على الأراضي"],
+                answer: "عن طريق العقود مثل البيع"
+            },
+            {
+                question: "ما هو دور العلم في الإسلام؟",
+                options: ["واجب فردي يتعلق فقط بالعلماء", "واجب على الجميع لتسيير شؤونهم", "لا يوجد حاجة له", "مهم فقط في الدين"],
+                answer: "واجب على الجميع"
+            },
+            {
+                question: "ماذا يعتبر الإسلام العمل؟",
+                options: ["ضروري فقط للمحتاجين", "وسيلة للكسب وتوفير احتياجات الأسرة", "واجب على الجميع بلا استثناء", "حق للفقراء فقط"],
+                answer: "وسيلة للكسب وتوفير احتياجات الأسرة"
+            },
+            {
+                question: "ما هو موقف الإسلام من الربا؟",
+                options: ["مقبول في التجارة", "محرم تمامًا", "مسموح به في بعض الحالات", "يستخدم كوسيلة قانونية"],
+                answer: "محرم تمامًا"
+            },
+            {
+                question: "ما هو المصدر الأساسي لحماية حقوق الإنسان في المملكة العربية السعودية؟",
+                options: ["من خلال الهيئات الحكومية فقط", "من خلال الكتاب والسنة", "من خلال القوانين المدنية الحديثة", "من خلال جمعيات المجتمع المدني"],
+                answer: "من خلال الكتاب والسنة"
+            },
+            {
+                question: "متى تم أنشئت هيئة حقوق اإلنسان في السعودية؟",
+                options: ["1426هـ", "1412هـ", "1400هـ", "1440هـ"],
+                answer: "1426هـ"
+            },
+            {
+                question: "ما هو دور هيئة حقوق الإنسان في السعودية؟",
+                options: ["مراقبة انتهاكات حقوق الإنسان", "تعزيز حقوق الإنسان وحمايتها", "متابعة الحقوق الدولية فقط", "إصدار القوانين الخاصة بالحقوق"],
+                answer: "تعزيز حقوق الإنسان وحمايتها"
+            },
+            {
+                question: "ما هو المصدر الأساسي للدستور في المملكة العربية السعودية؟",
+                options: ["القانون الدولي", "الشريعة الإسلامية", "قرارات الأمم المتحدة", "القانون الفرنسي"],
+                answer: "الشريعة الإسلامية"
+            }
+        ];
+
+        function generateQuiz() {
+            const quizForm = document.getElementById('quizForm');
+            quizData.forEach((item, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.classList.add('mb-3');
+                questionDiv.innerHTML = `<label class="form-label">${index + 1}. ${item.question}</label><br>`;
+                item.options.forEach((option, i) => {
+                    questionDiv.innerHTML += `
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" id="q${index}a${i}" name="q${index}" value="${option}" onclick="checkAnswer(${index}, this.value)">
+                            <label class="form-check-label" for="q${index}a${i}">${option}</label>
+                        </div>`;
+                });
+                quizForm.appendChild(questionDiv);
+            });
+        }
+
+        function checkAnswer(index, selectedValue) {
+            const correctAnswer = quizData[index].answer;
+            clearHighlights(index);
+
+            if (selectedValue === correctAnswer) {
+                document.querySelector(`input[name="q${index}"][value="${selectedValue}"]`).parentElement.classList.add('correct');
+            } else {
+                document.querySelector(`input[name="q${index}"][value="${selectedValue}"]`).parentElement.classList.add('wrong');
+                document.querySelector(`input[name="q${index}"][value="${correctAnswer}"]`).parentElement.classList.add('correct');
+            }
+        }
+
+        function clearHighlights(index) {
+            const allAnswers = document.querySelectorAll(`input[name="q${index}"]`).forEach(answer => {
+                answer.parentElement.classList.remove('correct', 'wrong');
+            });
+        }
+
+        // Generate the quiz on page load
+        window.onload = generateQuiz;
+    </script>
+</body>
+
+</html>
