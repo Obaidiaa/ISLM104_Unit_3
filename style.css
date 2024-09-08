@@ -62,3 +62,13 @@ body {
     border-radius: 5px;
     padding: 5px;
 }
+
+@font-face {
+    font-family: "Quran Font";
+    src: "UthmanTN_v2-0/UthmanTN_v2-0.ttf"
+        format("truetype");
+}
+
+.quran-font {
+    font-family: "Quran Font", Verdana, Tahoma;
+}
